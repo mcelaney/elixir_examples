@@ -19,4 +19,10 @@ defmodule Euler1Test do
        "sums all numbers divisible by 3 or 5 below the integer" do
     assert Euler1.using_map_reduce(10) == 23
   end
+
+  test "using_calculate_multiples/1 " <>
+       "given an integer " <>
+       "sums all numbers divisible by 3 or 5 below the integer" do
+    assert Euler1.using_calculate_multiples(10) == 23
+  end
 end

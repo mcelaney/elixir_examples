@@ -94,6 +94,22 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
+    <a href="#using_calculate_multiples/1">using_calculate_multiples(value)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Returns the sum of all values below a given number which are multiples
+of 3 or 5</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#using_calculate_multiples/3">using_calculate_multiples(list, value, acc)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#using_map_reduce/1">using_map_reduce(value)</a>
   </div>
   
@@ -143,14 +159,68 @@ of 3 or 5</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="using_map_reduce/1">
+          <div class="detail" id="using_calculate_multiples/1">
+  <div class="detail-header">
+    <a href="#using_calculate_multiples/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">using_calculate_multiples(value)</span>
+      
+      <a href="https://github.com/mcelaney/elixir_examples/blob/master/lib/euler1.ex#L113" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+  </div>
+  
+    <div class="specs">
+      <h4 class="specs-title">Specs</h4>
+      <div class="specs-list">
+        
+          <pre><code class="elixir">using_calculate_multiples(integer) :: integer</code></pre>
+        
+      </div>
+    </div>
+  
+  <section class="docstring">
+    <p>Returns the sum of all values below a given number which are multiples
+of 3 or 5.</p>
+<p>While working on Euler2 I realized the calculating the multiples might
+actually be faster than iterating over every number - which lead to this
+solution. We calculate the results for multiples of 3 and 5 separately -
+adding each result to the accumulator.</p>
+<p>It turned out to be around 85% faster than the next fastest answer
+for all examples.</p>
+<h2>Example</h2>
+<pre><code class="iex elixir">iex&gt; Euler1.using_calculate_multiples(10)
+23</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="using_calculate_multiples/3">
+  <div class="detail-header">
+    <a href="#using_calculate_multiples/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">using_calculate_multiples(list, value, acc)</span>
+      
+      <a href="https://github.com/mcelaney/elixir_examples/blob/master/lib/euler1.ex#L116" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="using_map_reduce/1">
   <div class="detail-header">
     <a href="#using_map_reduce/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
     <span class="signature">using_map_reduce(value)</span>
       
-      <a href="https://github.com/mcelaney/elixir_examples/blob/master/lib/euler1.ex#L86" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/mcelaney/elixir_examples/blob/master/lib/euler1.ex#L88" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -170,9 +240,10 @@ of 3 or 5</p>
 of 3 or 5.</p>
 <p>Included while trying to figure out if Enum.sum benefitted from Stream and to
 show a third solution to the problem. This version uses Stream.filter to map
-the values and then reduces the result. Oddly this one seems to perform best at
-500,000 items (about 6% faster than using_stream/1) and about the same as the
-using_stream/1 version at the other levels.</p>
+the values and then reduces the result. Oddly - if we ignore
+using_calculate_multiples/1 - this one seems to perform best at 500,000 items
+(about 6% faster than using_stream/1) and about the same as the using_stream/1
+version at the other levels.</p>
 <h2>Example</h2>
 <pre><code class="iex elixir">iex&gt; Euler1.using_map_reduce(10)
 23</code></pre>
@@ -213,8 +284,8 @@ the implementation of the  private methods after the fact. I could have avoided
 the private methods and left the transformation in line - but like the more
 declarative pipeline in the function serving as the interface. It’s more lines
 of code but easier to follow.</p>
-<p>This method is fastest above 100,000 items -
-except that at 500,000 items using_map_reduce/1 ended up winning.</p>
+<p>If we ignore using_calculate_multiples/1 this method is fastest above 100,000
+items - except that at 500,000 items using_map_reduce/1 ended up winning.</p>
 <h2>Example</h2>
 <pre><code class="iex elixir">iex&gt; Euler1.using_stream(10)
 23</code></pre>
@@ -228,7 +299,7 @@ except that at 500,000 items using_map_reduce/1 ended up winning.</p>
     </a>
     <span class="signature">using_tail_call_optimization(value)</span>
       
-      <a href="https://github.com/mcelaney/elixir_examples/blob/master/lib/euler1.ex#L58" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/mcelaney/elixir_examples/blob/master/lib/euler1.ex#L59" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -254,7 +325,8 @@ implementation.</p>
 <code class="inline">value_to_add = if desired_value?(head), do: head, else: 0</code> but considered it
 a code smell and moved it to it’s own method. Definitely made
 using_tail_call_optimization/2 easier to read.</p>
-<p>This method is fastest up to about 100,000 items.</p>
+<p>If we ignore using_calculate_multiples/1 this method is fastest up to about
+100,000 items.</p>
 <h2>Example</h2>
 <pre><code class="iex elixir">iex&gt; Euler1.using_tail_call_optimization(10)
 23</code></pre>

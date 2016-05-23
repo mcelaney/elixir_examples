@@ -1,4 +1,4 @@
-defmodule Example do
+defmodule Euler1Example do
   use Bmark
   bmark :using_stream_10, runs: 6 do
     Euler1.using_stream(10)
@@ -83,6 +83,35 @@ defmodule Example do
   bmark :using_map_reduce_1000000, runs: 6 do
     Euler1.using_map_reduce(1000000)
   end
+
+  bmark :using_calculate_multiples_10, runs: 6 do
+    Euler1.using_calculate_multiples(10)
+  end
+
+  bmark :using_calculate_multiples_1000, runs: 6 do
+    Euler1.using_calculate_multiples(1000)
+  end
+
+  bmark :using_calculate_multiples_10000, runs: 6 do
+    Euler1.using_calculate_multiples(10000)
+  end
+
+  bmark :using_calculate_multiples_100000, runs: 6 do
+    Euler1.using_calculate_multiples(100000)
+  end
+
+  bmark :using_calculate_multiples_250000, runs: 6 do
+    Euler1.using_calculate_multiples(250000)
+  end
+
+  bmark :using_calculate_multiples_500000, runs: 6 do
+    Euler1.using_calculate_multiples(500000)
+  end
+
+  bmark :using_calculate_multiples_1000000, runs: 6 do
+    Euler1.using_calculate_multiples(1000000)
+  end
+
 
   # Added due to bug in bmark that adds time to the first run of the last
   # example
